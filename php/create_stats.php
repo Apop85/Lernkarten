@@ -17,11 +17,8 @@
     }
 
     function get_class_name($file) {
-        // echo $file;
         $class = str_replace("./cards/", "", $file);
-        // echo $class;
         $class = preg_split("/\//", $class);
-        // var_dump($class);
         $class = $class[0];
         return $class;
     }
