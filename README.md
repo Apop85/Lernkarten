@@ -23,6 +23,6 @@ Als standardeintrag für die Einleitung ist "//qa" hinterlegt und als Trennzeich
 Dies wird folgendermassen in Worddateien verwendet:
 //qa<Fach/Thema<Frage<Antwort<
 
-###Beispiel:
+### Beispiel:
 
 **//qa<Mathematik/Addition<Was ergibt 1+1?<2<**
