@@ -1346,6 +1346,7 @@ input[name="r"] {
     height: 80%;
     border-left: 1px solid black;
     border-right: 1px solid black;
+    overflow: hidden;
 }
 
 .class_stats {
@@ -1372,6 +1373,7 @@ input[name="r"] {
     background-color: gainsboro;
     border-top: 1px solid black;
     text-transform: uppercase;
+    border-bottom: 4px solid black;
 }
 
 .stats_prgbar_percent {
