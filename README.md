@@ -29,22 +29,22 @@ Dies wird folgendermassen in Worddateien verwendet:
 
 # Funktionen
 - Extraktion/Erstellen von Lernkarten
-- - Automatische extraktion aus allen auffindbaren docx-Dateien im hinterlegten Dokumentenordner
-- - Extraktion aus allen docx-Dateien aus einem bestimmten Ordner
-- - Extraktion aus einem bestimmten docx-File
-- - Manuelles erstellen von Lernkarten
+  - Automatische extraktion aus allen auffindbaren docx-Dateien im hinterlegten Dokumentenordner
+  - Extraktion aus allen docx-Dateien aus einem bestimmten Ordner
+  - Extraktion aus einem bestimmten docx-File
+  - Manuelles erstellen von Lernkarten
 - Referenzangabe aus welchem File eine Karte generiert wurde
 - Erstellen von randomisierten Prüfungen
-- - Limitiert nach Auswahl Fächer
-- - Limitiert nach erreichter Punktzahl
+  - Limitiert nach Auswahl Fächer
+  - Limitiert nach erreichter Punktzahl
 - Statistische Auswertung
-- - Nach Auswertung aller Antworten
-- - Nach Auswertung der Punktzahl
-- - Nach Auswertung der Antworten pro Fach
+  - Nach Auswertung aller Antworten
+  - Nach Auswertung der Punktzahl
+  - Nach Auswertung der Antworten pro Fach
 - Einstellungen
-- - Manuelle Angabe des Standardpfades für Dokumente
-- - Überschreibung des Installationspfades möglich
-- - Angabe der Einleitungssequenz einer Frage
-- - Angabe des Trennzeichens einer Frage
-- - Zurücksetzen der Statistik
-- - Beispiele
+  - Manuelle Angabe des Standardpfades für Dokumente
+  - Überschreibung des Installationspfades möglich
+  - Angabe der Einleitungssequenz einer Frage
+  - Angabe des Trennzeichens einer Frage
+  - Zurücksetzen der Statistik
+  - Beispiele
