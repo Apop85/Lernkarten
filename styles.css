@@ -192,15 +192,14 @@ body {
 
 #infoleiste {
     grid-area: grid-r;
-    /* background: rgb(139, 162, 173); */
     border-right: 2px solid black;   
     padding-left: 10px;
     padding-right: 10px;
     text-align: center;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 400px auto;
-    grid-template-areas: "s_top" "s_bottom";
+    grid-template-rows: 100px auto;
+    grid-template-areas: "s_bottom" "s_top";
     background: linear-gradient(to left, rgb(197, 214, 222), rgb(139,162,173), rgb(139,162,173), rgb(139,162,173));
 }
 
@@ -330,6 +329,7 @@ body {
     background-size: 27px;
     background-repeat: no-repeat;
     background-position: 3px;
+    margin-top: 13px;
 }
 
 .help_button:hover {
@@ -1261,7 +1261,7 @@ input[name="r"] {
     background-color: black;
     position: relative;
     text-align: center;
-    top: -75px;
+    top: -38px;
     font-weight: 600;
     white-space: nowrap;
     z-index: 20;
@@ -1382,7 +1382,9 @@ input[name="r"] {
     margin: 30px 5px 0px 5px;    
     box-shadow: 0px 0px 5px 3px #00000079;    
     color: white;
-    animation: show_value 2s forwards
+    animation: show_value 2s forwards;
+    position: relative;
+    top: -51px;
 }
 
 .stat_score_int {
