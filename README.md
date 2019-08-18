@@ -14,8 +14,8 @@ Diese Seite durchsucht alle Word-Dokumente nach darin hinterlegten Lernkarten-Ei
 # Setup
 Die Seite wird als erstes nach dem Installationspfad und dem Dokumentenpfad fragen.
 
-##Beispiel Installationspfad: C:\Apache\httpd\Lernkarten
-##Beispiel Dokumentenpfad: C:\Users\Username\Dokumente
+**Beispiel Installationspfad: C:\Apache\httpd\Lernkarten**
+**Beispiel Dokumentenpfad: C:\Users\Username\Dokumente**
 
 Danach wird nach der Einleitung und dem Trennzeichen für die Fragen gefragt
 Als standardeintrag für die Einleitung ist "//qa" hinterlegt und als Trennzeichen "<"
@@ -24,4 +24,4 @@ Dies wird folgendermassen in Worddateien verwendet:
 //qa<Fach/Thema<Frage<Antwort<
 
 ##Beispiel:
-###//qa<Mathematik/Addition<Was ergibt 1+1?<2<
+**//qa<Mathematik/Addition<Was ergibt 1+1?<2<**
