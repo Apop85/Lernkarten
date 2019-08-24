@@ -34,9 +34,12 @@ Dies wird folgendermassen in Worddateien verwendet:
   - Extraktion aus einem bestimmten docx-File
   - Manuelles erstellen von Lernkarten
 - Referenzangabe aus welchem File eine Karte generiert wurde
-- Erstellen von randomisierten Prüfungen
-  - Limitiert nach Auswahl Fächer
-  - Limitiert nach erreichter Punktzahl
+- Lernformen
+  - Zufällige Frage stellen lassen
+  - Einzelne Fächer Lernen
+  - Erstellen von randomisierten Prüfungen
+    - Limitiert nach Auswahl Fächer
+    - Limitiert nach erreichter Punktzahl
 - Statistische Auswertung
   - Nach Auswertung aller Antworten
   - Nach Auswertung der Punktzahl
