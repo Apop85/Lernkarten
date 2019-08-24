@@ -7,7 +7,7 @@ Diese Seite durchsucht alle Word-Dokumente nach darin hinterlegten Lernkarten-Ei
 3. PHP herunterladen
 4. Apache/Nginx/PHP konfigurieren
 5. Python 3 herunterladen und installieren
-6. Python bei Systemvariabeln in PATH hinterlegen
+6. Python bei Systemvariablen in PATH hinterlegen
 7. Lernkarten-Dateien in HTML-Ordner von Apache oder Nginx verschieben
 8. Nachfolgendes Setupprocedere durchführen
 
@@ -18,7 +18,7 @@ Die Seite wird als erstes nach dem Installationspfad und dem Dokumentenpfad frag
 - **Beispiel Dokumentenpfad: C:\Users\Username\Dokumente**
 
 Danach wird nach der Einleitung und dem Trennzeichen für die Fragen gefragt
-Als standardeintrag für die Einleitung ist "//qa" hinterlegt und als Trennzeichen "<"
+Als Standardeintrag für die Einleitung ist "//qa" hinterlegt und als Trennzeichen "<"
 
 Dies wird folgendermassen in Worddateien verwendet:
 //qa<Fach/Thema<Frage<Antwort<
@@ -29,14 +29,14 @@ Dies wird folgendermassen in Worddateien verwendet:
 
 # Funktionen
 - Extraktion/Erstellen von Lernkarten
-  - Automatische extraktion aus allen auffindbaren docx-Dateien im hinterlegten Dokumentenordner
+  - Automatische Extraktion aus allen auffindbaren docx-Dateien im hinterlegten Dokumentenordner
   - Extraktion aus allen docx-Dateien aus einem bestimmten Ordner
   - Extraktion aus einem bestimmten docx-File
   - Manuelles erstellen von Lernkarten
 - Referenzangabe aus welchem File eine Karte generiert wurde
 - Lernformen
   - Zufällige Frage stellen lassen
-  - Einzelne Fächer Lernen
+  - Einzelne Fächer lernen
   - Erstellen von randomisierten Prüfungen
     - Limitiert nach Auswahl Fächer
     - Limitiert nach erreichter Punktzahl
@@ -51,3 +51,4 @@ Dies wird folgendermassen in Worddateien verwendet:
   - Angabe des Trennzeichens einer Frage
   - Zurücksetzen der Statistik
   - Beispiele
+
