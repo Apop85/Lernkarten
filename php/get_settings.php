@@ -36,6 +36,7 @@
                                     <button class="help_content_button setup_config_button" method="post" name="submit_value" value="configuration">Konfiguration</button>
                                     <button class="help_content_button setup_template_button" method="post" name="submit_value" value="template">Vorlagen</button>
                                     <button class="help_content_button setup_stats_button" method="post" name="submit_value" value="reset_stats">Statistiken Zurücksetzen</button>
+                                    <button class="help_content_button setup_py_button" method="post" name="submit_value" value="check_py">Pythonmodule Prüfen</button>
                                 </form>
                             </div>';
             } 
@@ -223,6 +224,54 @@
             $_POST["submit_value"] = "start";
             $message = reset_stats();
             return create_help_content().$message;
+        } elseif ($option == "check_py") {
+            $check_array=array("Kommandozeile" => NULL, "Pythoninstallation" => NULL, "Python-docx-Modul" => NULL, "Requests-Modul" => NULL, "Hashlib-Modul" => NULL, "Os-Modul" => NULL, "Systemmodul" => NULL, "Regexmodul" => NULL);
+            $info_array=array("Kommandozeile" => "Kann cmd.exe geöffnet werden?", "Pythoninstallation" => "Python installiert oder in der PATH Variabel vorhanden? Falls nicht können nachfolgende Tests nicht ausgeführt werden.", "Python-docx-Modul" => "'pip3 install python-docx' Ausgeführt?", "Requests-Modul" => "'pip3 install requests' Ausgeführt?", "Hashlib-Modul" => "'pip3 install hashlib' Ausgeführt?", "Os-Modul" => "'pip3 install os' Ausgeführt?", "Systemmodul" => "'pip3 install sys' Ausgeführt?", "Regexmodul" => "'pip3 install re' Ausgeführt?");
+            $check_keys = array_keys($check_array);
+            $command = escapeshellcmd("echo 1");
+            $check_array["Kommandozeile"] = shell_exec($command)[0];
+            $command = escapeshellcmd('python -c "print(1, end=\"\");"');
+            $check_array["Pythoninstallation"] = shell_exec($command);
+
+            $i = 0;
+            if ($check_array["Pythoninstallation"] != NULL) {
+                $all_good = TRUE;
+                $command = escapeshellcmd('python "./py/check_modules.py"');
+                $cmd_out = shell_exec($command);
+                $python_modules = preg_split("/\?/", $cmd_out);
+                foreach ($python_modules as $value) {
+                    if ($value == 1) {
+                        $check_array[$check_keys[$i+2]] = $value; 
+                    } 
+                    $i++;
+                }
+                // var_dump($check_array);
+            }
+
+            $table_content = "";
+            foreach ($check_array as $key => $value) {
+                if ($value == 0 || $value == NULL) {
+                    $all_good = FALSE;
+                    $out_value = "<td class='py_false'>✘</td>";
+                } else {
+                    $out_value = "<td class='py_true'>✔</td>";
+                }
+                $table_content .= '<tr><td class="py_info">'.$key.'</td>'.$out_value.'<td><img src="./img/info.png" title="'.$info_array[$key].'"></tr>';
+            }
+
+            if ($all_good) {
+                $message = '<p class="py_eval">Alle Tests waren erfolgreich</p>';
+            } else {
+                $message = '<p class="py_eval">Einige Tests sind fehlgeschlagen. Prüfe die Infosymbole für Hinweise</p>';
+            }
+
+            $output =   '<div class="help_box">
+                            <p class="py_title">Prüfung der Pythonimplementation</p>
+                            <table class="py_info_table">
+                                '.$table_content.'
+                            </table>
+                            '.$message.'
+                        </div>';
         }
 
         return $output;

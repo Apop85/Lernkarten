@@ -1,3 +1,3 @@
 <?php
-    $current_version="1.0.4"
+    $current_version="1.1.0"
 ?>
