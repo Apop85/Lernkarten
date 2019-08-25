@@ -6,7 +6,7 @@
         if ($newest_version == $current_version || $newest_version == "NC") {
             return 'v'.$current_version;
         } else {
-            return '<a class="update_info">UPDATE VERFÜGBAR: v'.$newest_version.'</a>';
+            return '<a href="https://www.github.com/Apop85/Lernkarten" target="_blank" class="update_info">Update verfügbar: v'.$newest_version.'</a>';
         }
     } 
 ?>
