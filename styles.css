@@ -1098,6 +1098,10 @@ input[name="r"] {
     background-image: url("./img/reset.png");
 }
 
+.setup_py_button {
+    background-image: url("./img/py.png");
+}
+
 .help_content_button {
     background-color: white;
     font-size: 15px;
@@ -1395,18 +1399,69 @@ input[name="r"] {
 
 @-webkit-keyframes progress-bar {
     0% { height: 0; }
- }
- @-moz-keyframes progress-bar {
+}
+@-moz-keyframes progress-bar {
     0% { height: 0; }
- }
- @keyframes progress-bar {
+}
+@keyframes progress-bar {
     0% { height: 0; }
- }
+}
 
- .update_info {
-     background: orange;
-     padding: 2px;
-     border-radius: 5px;
-     border: 1px solid white;
-     font-weight: bold;
- }
+.update_info {
+    text-decoration: none;
+    color: black;
+    background: orange;
+    padding: 5px;
+    border-radius: 5px;
+    /* border: 1px solid white; */
+    font-weight: bold;
+}
+
+.update_info:hover {
+    background-color: #ffda4f;
+}
+
+.py_info_table {
+    width: 80%;
+    margin-left: 10%;
+    border: 5px white solid;
+    box-shadow: 0px 0px 5px 0px;
+    background-color: rgb(235, 235, 235);
+}
+
+ .py_info_table > tbody > tr > td {
+    /* width: 20%; */
+    text-align: center;
+    border: none;
+}
+
+.py_info_table > tbody > tr > td > img {
+    width: 20px;
+}
+
+.py_true {
+    background-color: greenyellow;
+    border-radius: 50%;
+}
+
+.py_false {
+    background-color: lightcoral;
+    border-radius: 50%;
+}
+
+.py_title {
+    margin-top: 0;
+    background-color: white;
+    padding: 15px 45px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px 0px;
+}
+
+.py_eval {
+    background-color: #0000009e;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+}
