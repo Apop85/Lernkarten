@@ -53,4 +53,6 @@ Dies wird folgendermassen in Worddateien verwendet:
   - Angabe des Trennzeichens einer Frage
   - Zurücksetzen der Statistik
   - Beispiele
+- Versionsprüfung
+  - Prüft Gitrepository nach Updates
 
