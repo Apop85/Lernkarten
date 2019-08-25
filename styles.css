@@ -586,6 +586,7 @@ ul > li > ul {
 ul li:hover ul li {
     display: block;
     z-index: 1;
+    line-height: 25px;
 }
 
 .add_list {
@@ -1400,4 +1401,12 @@ input[name="r"] {
  }
  @keyframes progress-bar {
     0% { height: 0; }
+ }
+
+ .update_info {
+     background: orange;
+     padding: 2px;
+     border-radius: 5px;
+     border: 1px solid white;
+     font-weight: bold;
  }
