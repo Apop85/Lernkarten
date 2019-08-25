@@ -8,7 +8,7 @@
 # Created Date: Thursday 08.08.2019, 23:52
 # Author: rbald
 #-----
-# Last Modified: Monday 19.08.2019, 22:35
+# Last Modified: Sunday 25.08.2019, 18:25
 #-----
 # Copyright (c) 2019 rbald
 # This software is published under the MIT license.
@@ -16,14 +16,18 @@
 #-----
 # Description: Search working directory for docx files and get Questions out of them
 ####
-import os, docx, hashlib
-from sys import argv
+try:
+    import os, docx, hashlib
+    from sys import argv
+except:
+    print("<div class='output_message error'>Fehlendes Pythonmodul: python-docx</div>")
+    exit()
 
 def get_root():
     # Konfigurationsdatei einlesen
     os.chdir(os.path.dirname(__file__))
     rel_dir = "../conf/cards.ini"
-    file_reader = open(rel_dir)
+    file_reader = open(rel_dir, 'r')
     file_content = file_reader.readlines()
     file_reader.close()
     for line in file_content:

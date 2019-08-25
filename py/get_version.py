@@ -8,7 +8,7 @@
 # Created Date: Sunday 25.08.2019, 13:55
 # Author: rbald
 #-----
-# Last Modified: Sunday 25.08.2019, 14:19
+# Last Modified: Sunday 25.08.2019, 18:27
 #-----
 # Copyright (c) 2019 rbald
 # This software is published under the MIT license.
@@ -17,8 +17,11 @@
 # Description: Crawls github to get newest version number
 # Python Requirements: requests
 ####
-
-import re, requests
+try:
+    import re, requests
+except:
+    print("<div class='output_message error'>Fehlendes Pythonmodul: requests</div>")
+    exit()
 
 web_link = "https://raw.githubusercontent.com/Apop85/Lernkarten/master/conf/version.php"
 
