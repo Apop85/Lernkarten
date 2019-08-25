@@ -12,7 +12,7 @@ Diese Seite durchsucht alle Word-Dokumente nach darin hinterlegten Lernkarten-Ei
 8. Nachfolgendes Setupprocedere durchführen
 
 # Setup
-Benötigte Pythonerweiterungen: requests, python-docx. Installation mittels pip3 install <modulname>
+**Benötigte Pythonerweiterungen:** requests, python-docx. Installation mittels pip3 install modulname
 Die Seite wird als erstes nach dem Installationspfad und dem Dokumentenpfad fragen.
 
 - **Beispiel Installationspfad: C:\Apache\httpd\Lernkarten**
