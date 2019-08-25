@@ -271,6 +271,9 @@
                                 '.$table_content.'
                             </table>
                             '.$message.'
+                            <form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">
+                                <button class="help_content_button" method="post" name="submit_value" value="start">Zurück</button>
+                            </form>
                         </div>';
         }
 
