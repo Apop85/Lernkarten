@@ -37,12 +37,12 @@
         $form = $form_0.$form_1.$form_2.$form_3.$form_4.$form_5.$form_6;
         $output = "";
         if ($post_value == "check") {
-            $answer = strtolower(test_input($_POST["answer"]));
-            $last_answer = strtolower(test_input($_POST["true_answer"]));
+            $answer = test_input($_POST["answer"]);
+            $last_answer = test_input($_POST["true_answer"]);
             $last_file = test_input($_POST["last_file"]);
             $q_file = test_input($_POST["q_file"]);
             
-            if ($last_answer == $answer && $answer != "") {
+            if (strtolower($last_answer) == strtolower($answer) && $answer != "") {
                 # Richtige Antwort
                 $front_1 = "<div class='flip-card-front'>";
                 $front_2 = '<div class="true_value"><p>Diese Antwort war richtig</p></div>';

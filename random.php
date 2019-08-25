@@ -11,7 +11,6 @@
                 return array($q,$a,$f,$cards[$random]);
             }
         }
-        // return array($q,$a,$f,$cards[$random]);
     }
     
     function get_cards($main, $cards){
@@ -32,26 +31,28 @@
         }
         return $cards;
     }
-    // get_random_card(999999999);
     
     function check_answer($card) {
         # Prüfe Antwort
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $antwort = htmlspecialchars(strtolower(test_input($_POST["answer"])));
-            $test = htmlspecialchars(strtolower(test_input($_POST["true_answer"])));
+            $antwort = test_input($_POST["answer"]);
+            $test = test_input($_POST["true_answer"]);
             $last_file = test_input($_POST["last_file"]);
             
-            if ($antwort == $test){
+            if (strtolower($antwort) == strtolower($test)){
                 $antwortfeld = '<div class="true_value">Diese Antwort war richtig!!</div>';
                 $command = escapeshellcmd('python ./py/update_score.py  "update" "1" "'.$last_file.'"');
                 $output = shell_exec($command);
                 return $antwortfeld.$output;
             }
             else {
-                $antwortfeld = '<div class="false_value">Diese Antwort war falsch!! Die korrekte Antwort lautet:</br><div class="correct">'.htmlspecialchars($test).'</div>Siehe '.$card[2].'</div>';
+                $test = str_replace("ä", "&auml;", $test);
+                $test = str_replace("ö", "&ouml;", $test);
+                $test = str_replace("ü", "&uuml;", $test);
+                $antwortfeld = '<div class="false_value">Diese Antwort war falsch!! Die korrekte Antwort lautet:</br><div class="correct">'.$test.'</div>Siehe '.$card[2].'</div>';
                 $command = escapeshellcmd('python ./py/update_score.py  "update" "-1" "'.$last_file.'"');
                 $output = shell_exec($command);
-                return $antwortfeld.$output;
+                return $antwortfeld.$output;    
             }
         }
     }
@@ -91,7 +92,6 @@
     } else {
         $card = get_random_card(9999999);
     }
-    $card = get_random_card();
     $won = check_answer($card);
     $header = '<p class="content_title">Eine beliebige Zufallsfrage</p><p class="content_text">Eine Zufällige Frage aus der Kartei wird ausgewählt und ausgegeben.</p>';
     $validation = '<div class="flip-card-front">'.$won.'</div>';
