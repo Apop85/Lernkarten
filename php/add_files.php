@@ -27,7 +27,7 @@ function create_form() {
                         
                         <div class="add_titles">Ordner durchsuchen
                             <div class="add_info_text">
-                                <p>Durchsuche einen bestimmten Ordner nach docx Dateien und erstelle entsprechende Karteikarten</p>
+                                <p>Durchsuche einen bestimmten Ordner nach docx Dateien und erstelle entsprechende Karteikarten. Beispiel: C:\Users\Benutzer\Dokumente\</p>
                                 <input class="add_input" type="text" name="dir_name">
                                 <button class="add_button" method="post" name="button" value="search_folder">Ordner durchsuchen</button></div>
                     </div></div>

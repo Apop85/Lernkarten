@@ -3,6 +3,7 @@
 <html>
     <head>
         <title><?php echo get_title($titel); ?></title>
+        <meta charset="UTF-8"/>
         <!--STYLESHEET-->
         <link rel="stylesheet" href="styles.css">
     </head>

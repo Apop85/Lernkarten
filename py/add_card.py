@@ -8,7 +8,7 @@
 # Created Date: Thursday 08.08.2019, 23:52
 # Author: rbald
 #-----
-# Last Modified: Sunday 25.08.2019, 18:25
+# Last Modified: Wed Sep 18 2019
 #-----
 # Copyright (c) 2019 rbald
 # This software is published under the MIT license.
@@ -69,13 +69,17 @@ def process_files(array, ignore=0):
 
 def process_dox(found_questions, name):
     # Lese jede Zeile aus dem Worddokument aus und prüfe diese auf das Suchmuster
-    doc_file = docx.Document(name)
-    for i in range(len(doc_file.paragraphs)):
-        if  LINE_START+SEPERATOR in doc_file.paragraphs[i].text:
-            raw_question = doc_file.paragraphs[i].text
-            raw_question = raw_question.lstrip(LINE_START+SEPERATOR).split(SEPERATOR)
-            found_questions.setdefault(raw_question[0], [])
-            found_questions[raw_question[0]] += [(raw_question[1], raw_question[2], name)]
+    try:
+        doc_file = docx.Document(name)
+        for i in range(len(doc_file.paragraphs)):
+            if  LINE_START+SEPERATOR in doc_file.paragraphs[i].text:
+                raw_question = doc_file.paragraphs[i].text
+                raw_question = raw_question.lstrip(LINE_START+SEPERATOR).split(SEPERATOR)
+                found_questions.setdefault(raw_question[0], [])
+                found_questions[raw_question[0]] += [(raw_question[1], raw_question[2], name)]
+    except:
+        pass
+    
     return found_questions
 
 def create_files(questions, root_dir = ROOT_PATH):

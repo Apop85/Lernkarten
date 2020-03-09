@@ -1,4 +1,5 @@
 <?php
+    // header("Content-Type: text/html; charset=utf-8");
     function read_ini_file() {
         $command = escapeshellcmd('python ./py/conf.py "get_content"');
         $output = shell_exec($command);

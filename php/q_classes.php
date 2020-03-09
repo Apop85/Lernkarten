@@ -21,12 +21,33 @@
         return $class_names;
     }
 
+    function max_score_value() {
+        $output =   "<a>Maximale Punktzahl: </a><select name='max_score'>
+                    <option value='ALLE'>ALLE</options>";
+        $start_value = 10;
+        for ($i=0; $i <= 10; $i++) {
+            $output .= '<option value="'.$start_value.'">'.$start_value.'</option>';
+            $start_value--;
+        }
+        $output .= '</select></br></br>';
+
+        return $output;
+    }
 
     function create_question($quest_array, $main, $post_value) {
         $div_intro_1 = "<div class='flip-card'>";
         $div_intro_2 = "<div class='flip-card-inner'>";
         $div_outro = '</div></div>';
-        $form_0 = '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">';
+        if (key_exists("max_score", $_POST)) {
+            $max_score = $_POST["max_score"];
+            if ($max_score == "ALLE") {
+                $max_score = 99999999;
+            } 
+            $form_0 =   '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">
+                        <input type="hidden" name="max_score" value="'.$max_score.'">';
+        } else {
+            $form_0 = '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">';
+        }
         $form_1 = '<p class="frage">'.$quest_array[0]."</p>";
         $form_2 = '<input class="antwort" autocomplete="off" type="text" name="answer" autofocus><button class="submit_button" method="post" name="button_value" value="'.$main.'">GO</button>';
         $form_3 = '<input type="hidden" name="true_answer" value="'.$quest_array[1].'">';
@@ -61,7 +82,7 @@
                 $back_1 = '<div class="flip-card-back">';
                 $back_2 = $form;
                 $back_3 = '</div>';
-                $antwortfeld = '<div class="false_value">Diese Antwort war falsch!! Die korrekte Antwort lautet:</br><div class="correct">'.$test.'</div>Siehe '.$card[2].'</div>';
+                $antwortfeld = '<div class="false_value">Diese Antwort war falsch!! Die korrekte Antwort lautet:</br><div class="correct">'.$test.'</div>Siehe '.$quest_array[2].'</div>';
                 $command = escapeshellcmd('python ./py/update_score.py  "update" "-1" "'.$q_file.'"');
                 $output = shell_exec($command);
             }
@@ -73,6 +94,8 @@
             return $div_intro.$front.$back.$div_outro.$output;
         } else {
             # Wenn erste Frage
+            $max_score_dd = max_score_value();
+            $form = $form_0.$form_1.$max_score_dd.$form_2.$form_3.$form_4.$form_5.$form_6;
             $div_intro_2 = "<div class='flip-card-static'>";
             $front_1 = '<div class="flip-card-front-static">';
             $front_2 = $form;
@@ -93,7 +116,7 @@
         return "<div class='flip-card'></div>";
     }
 
-    function get_cards($main) {
+    function get_cards($main, $max_score=99999999) {
         $file_array = scandir($main);
         $output = [];
         foreach ($file_array as $file) {
@@ -102,10 +125,14 @@
             }
         }
 
-        $random = mt_rand(0, sizeof($output)-1);
-        $random_card = $main.$output[$random];
-        include ($random_card);
-        return array($q,$a,$f,$main.$output[$random]);
+        while (1 == 1) {
+            $random = mt_rand(0, sizeof($output)-1);
+            $random_card = $main.$output[$random];
+            include ($random_card);
+            if ($s <= $max_score) {
+                return array($q,$a,$f,$main.$output[$random]);
+            }
+        }
     }
 
     function create_buttons($folder_array, $post_value) {
@@ -179,8 +206,16 @@
         $classes = get_classes($main);
         $question = "";
     } elseif ($post_value == "check") {
+        if (key_exists("max_score", $_POST)) {
+            $max_score = $_POST["max_score"];
+            if ($max_score == "ALLE") {
+                $max_score = 99999999;
+            } 
+        } else {
+            $max_score = 99999999;
+        }
         $classes = get_classes($main);
-        $question_array = get_cards($main);
+        $question_array = get_cards($main, $max_score);
         $question = create_question($question_array, $main, $post_value);
         $post_value = preg_split("/\//", $main);
         $post_value = $post_value[sizeof($post_value)-1];
