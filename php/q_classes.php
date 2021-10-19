@@ -35,7 +35,7 @@
     }
 
     function create_question($quest_array, $main, $post_value) {
-        $div_intro_1 = "<div class='flip-card'>";
+        $div_intro_1 = "<div id='card' class='flip-card'>";
         $div_intro_2 = "<div class='flip-card-inner'>";
         $div_outro = '</div></div>';
         if (key_exists("max_score", $_POST)) {
@@ -43,10 +43,10 @@
             if ($max_score == "ALLE") {
                 $max_score = 99999999;
             } 
-            $form_0 =   '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">
+            $form_0 =   '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'#card">
                         <input type="hidden" name="max_score" value="'.$max_score.'">';
         } else {
-            $form_0 = '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">';
+            $form_0 = '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'#card">';
         }
         $form_1 = '<p class="frage">'.$quest_array[0]."</p>";
         $form_2 = '<input class="antwort" autocomplete="off" type="text" name="answer" autofocus><button class="submit_button" method="post" name="button_value" value="'.$main.'">GO</button>';
@@ -113,7 +113,7 @@
             return $div_intro.$front.$back.$div_outro.$output;
         }
         
-        return "<div class='flip-card'></div>";
+        return "<div id='card' class='flip-card'></div>";
     }
 
     function get_cards($main, $max_score=99999999) {
@@ -137,7 +137,7 @@
 
     function create_buttons($folder_array, $post_value) {
         # Erstelle navigationsbuttons
-        $init_form = '<form class="form" method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">';
+        $init_form = '<form class="form" method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'#card">';
         $output = $init_form;
         if (is_dir('./cards/'.$post_value)) {
             foreach ($folder_array as $folder) {

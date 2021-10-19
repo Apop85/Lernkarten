@@ -80,7 +80,7 @@
 ?>
 
 <?php
-    $init_form = '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'">';
+    $init_form = '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]).'#card">';
     $titel = 'Zufallsfrage';
     if (key_exists("max_score", $_POST)) {
         $max_score = $_POST["max_score"];
@@ -101,13 +101,13 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $max_score = $_POST["max_score"];
         $transmitter = '<input type="hidden" name="max_score" value="'.$max_score.'">';
-        $divs = '<div class="flip-card"><div class="flip-card-inner">';
+        $divs = '<div id="card" class="flip-card"><div class="flip-card-inner">';
         $frage = '<div class="flip-card-back"><p class="frage">'.$card[0].'</p>';
         $content = $header.$divs.$frage.$init_form.$transmitter.$button.$validation.$footer.$true_answer.'</form>';
     }
     else {
         $max_score_menu = max_score_value();
-        $divs = '<div class="flip-card"><div class="flip-card-static">';
+        $divs = '<div id="card" class="flip-card"><div class="flip-card-static">';
         $frage = '<div class="flip-card-b-static"><p class="frage">'.$card[0].'</p>';
         $content = $header.$divs.$frage.$init_form.$max_score_menu.$button.$footer.$true_answer.'</form>';
     }

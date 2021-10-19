@@ -8,7 +8,7 @@
 # Created Date: Thursday 08.08.2019, 23:52
 # Author: rbald
 #-----
-# Last Modified: Wed Sep 18 2019
+# Last Modified: Tuesday 19.10.2021, 18:24
 #-----
 # Copyright (c) 2019 rbald
 # This software is published under the MIT license.
@@ -22,6 +22,8 @@ try:
 except:
     print("<div class='output_message error'>Fehlendes Pythonmodul: python-docx</div>")
     exit()
+
+DEBUG = True
 
 def get_root():
     # Konfigurationsdatei einlesen
@@ -56,6 +58,7 @@ def search_all(doc_directory):
     for foldername in file_list:
         for filename in foldername[2]:
             if filename.endswith("docx") and not filename.endswith("beispiel.docx"):
+                writeLogfile(filename, "search_all")
                 result_list += [foldername[0]+"\\"+filename]
     
     process_files(result_list)
@@ -75,6 +78,7 @@ def process_dox(found_questions, name):
             if  LINE_START+SEPERATOR in doc_file.paragraphs[i].text:
                 raw_question = doc_file.paragraphs[i].text
                 raw_question = raw_question.lstrip(LINE_START+SEPERATOR).split(SEPERATOR)
+                writeLogfile(raw_question, "process_dox")
                 found_questions.setdefault(raw_question[0], [])
                 found_questions[raw_question[0]] += [(raw_question[1], raw_question[2], name)]
     except:
@@ -85,6 +89,7 @@ def process_dox(found_questions, name):
 def create_files(questions, root_dir = ROOT_PATH):
     # Erstelle Files anhand der gefundenen Daten
     count=0
+    writeLogfile(questions, "create_file")
 
     for fach in questions.keys():
         if "/" in fach:
@@ -95,6 +100,8 @@ def create_files(questions, root_dir = ROOT_PATH):
             path = "/".join(temp_array)
         else:
             path = fach.capitalize()
+    
+        writeLogfile(root_dir+"/cards/"+path, "create_file")
 
         if not os.path.exists(root_dir+"/cards/"+path):
             os.mkdir(root_dir+"/cards/"+path)
@@ -107,11 +114,13 @@ def create_files(questions, root_dir = ROOT_PATH):
             filename = filename.hexdigest()+".php"
             
             if not os.path.exists(current_dir+"\\"+filename):
+                writeLogfile(current_dir+"\\"+filename, "create_file")
                 question = '"'+frage[0]+'"'
                 answer = '"'+frage[1]+'"'
                 file_path = '"'+frage[2]+'"'
                 file_path = file_path.split("\\")
                 file_path = "/".join(file_path)
+                writeLogfile("Q:{} A:{} P:{}".format(question, answer, file_path), "create_file")
                 
                 output = "<?php\n\t$q = {};\n\t$a = {};\n\t$f = {};\n\t$s = 0;\n\t$ra = 0;\n\t$fa = 0;\n?>".format(question, answer, file_path)
                 file_writer = open(current_dir+"/"+filename, "w", encoding="utf-8")
@@ -123,6 +132,7 @@ def create_files(questions, root_dir = ROOT_PATH):
 
 def search_folder():
     folder = argv[2]
+    writeLogfile(folder, "search_folder")
     if folder.endswith('"'):
         folder = folder.strip('"')
     if os.path.exists(folder) and os.path.isdir(folder):
@@ -132,6 +142,7 @@ def search_folder():
         
 def search_file():
     filename = argv[2]
+    writeLogfile(filename, "search_file")
     if filename.endswith('"'):
         filename = filename.strip('"')
     if os.path.exists(filename) and os.path.isfile(filename):
@@ -141,6 +152,7 @@ def search_file():
         print("<div class='output_message error'>Dateipfad ung&#252;ltig"+argv[2]+"</div>")
         
 def add_data(root_dir = ROOT_PATH+"\\cards"):
+    writeLogfile(root_dir, "add_data")
     if os.path.exists(root_dir+'\\'+argv[4]):
         fach = argv[4]
         frage = argv[2]
@@ -154,6 +166,11 @@ def add_data(root_dir = ROOT_PATH+"\\cards"):
         print("<div class='output_message error'>Fehlerhafte Ordnerangabe</div>")
 
 # search_all(DOK_PATH)
+def writeLogfile(message, origin):
+    if DEBUG:
+        file_writer = open(r"C:\xampp\htdocs\lernkarten\logfile.log", "a+", encoding="utf-8")
+        file_writer.write("{}: {}\n".format(origin, message))
+        file_writer.close()
 
 if argv[1] == "all":
     search_all(DOK_PATH)

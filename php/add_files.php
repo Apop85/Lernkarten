@@ -120,18 +120,22 @@ function create_form() {
     function get_file_values() {
         // Auslesen des Verzeichnisses und umformatieren des Strings
         $add_file = $_POST['file_name'];
-        $add_file = trim($add_file, '"');
+        if (!$add_file[0] == '"') {
+            $add_file = '"'.$add_file.'"';
+        }
         $add_file = escapeshellarg(addslashes($add_file));
-
         return $add_file;
     }
 
     function get_dir_values() {
         // Auslesen des Ordners zum Scannen
         $add_dir = $_POST["dir_name"];
-        $add_dir = trim($add_dir, '"');
-        $add_dir = escapeshellarg(addslashes($add_dir));
+        // $add_dir = trim($add_dir, '"');
+        if (!$add_dir[0] == '"') {
+            $add_dir = '"'.$add_dir.'"';
+        }
 
+        $add_dir = escapeshellarg(addslashes($add_dir));
         return $add_dir;
     }
 
@@ -148,7 +152,7 @@ function create_form() {
             $add_dir = get_dir_values();
             if ($add_dir != "") {
                 # python find_dir ausführen
-                $command = escapeshellcmd('python ./py/add_card.py "dir" "'.$add_dir.'"');
+                $command = escapeshellcmd('python ./py/add_card.py "dir" '.$add_dir.'');
                 $message = shell_exec($command);
             }
             else {
@@ -159,7 +163,7 @@ function create_form() {
             $add_file = get_file_values();
             if ($add_file != "") {
                 # python find_file ausführen
-                $command = escapeshellcmd('python ./py/add_card.py "file" "'.$add_file.'"');
+                $command = escapeshellcmd('python ./py/add_card.py "file" '.$add_file.'');
                 $message = shell_exec($command);    
             }
             else {
