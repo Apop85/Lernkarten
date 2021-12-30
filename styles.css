@@ -629,7 +629,7 @@ ul li:hover ul li {
     background-color: transparent;
     backface-visibility: hidden;
     width: 80%;
-    height: 400px;
+    height: 600px;
     perspective: 1000px;
     margin: 50px auto 100px auto;
 }
@@ -685,7 +685,7 @@ ul li:hover ul li {
     color: white;
     transform: rotateY(180deg);
     width: 100%;
-    height: 400px;
+    height: 600px;
     backface-visibility: hidden;
 }
 
@@ -765,7 +765,7 @@ ul li:hover ul li {
 }
 
 .slideshow {
-    height: 400px;
+    height: 600px;
     overflow: hidden;
     grid-area: bottom_page;
 }
